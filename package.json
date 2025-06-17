@@ -1,0 +1,41 @@
+{
+  "name": "price-feed-ui",
+  "version": "1.0.0",
+  "description": "Price Feed UI",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf dist .papi",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "gen-shibuya-rpc": "yarn papi add -w wss://rpc.shibuya.astar.network shibuya",
+    "gen-pop-rpc": "yarn papi add -w wss://rpc1.paseo.popnetwork.xyz pop",
+    "gen-ink-v5-contract-metadata": "yarn papi ink add metadata/price_feed_consumer_ink_v5.json",
+    "gen-ink-v6-contract-metadata": "yarn papi ink add metadata/price_feed_consumer_ink_v6.json",
+    "generate": "yarn gen-pop-rpc && yarn gen-ink-v6-contract-metadata"
+  },
+  "peerDependencies": {
+    "polkadot-api": "*"
+  },
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/material": "latest",
+    "@polkadot-api/descriptors": "file:.papi/descriptors",
+    "@polkadot-api/sdk-ink": "^0.1.0",
+    "@polkadot-api/substrate-bindings": "^0.14.0",
+    "@polkadot/api": "^16.2.1",
+    "@polkadot/util": "^13.5.1",
+    "@polkadot/util-crypto": "^13.5.1",
+    "dayjs": "^1.11.9",
+    "polkadot-api": "^1.14.0",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest"
+  }
+}
