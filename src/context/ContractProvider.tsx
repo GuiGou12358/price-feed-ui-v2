@@ -1,13 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {InkV5Contract} from "../lib/inkv5Contract";
-import {InkV6Contract} from "../lib/inkv6Contract";
-
-
-const POP_RPC = "wss://rpc1.paseo.popnetwork.xyz";
-const POP_CONTRACT_ADDRESS = "0x96213b72A4CF50402D9dFe71919350451B8dC356";
-
-const SHIBUYA_RPC="wss://rpc.shibuya.astar.network";
-const SHIBUYA_CONTRACT_ADDRESS = "W6jGgZUAiryufdJRX33GdDTeX28pt7dZxawwbCUfFwbc2cH";
+import {InkV5Contract, InkV6Contract} from "../lib/inkContract";
+import {cryptoWaitReady} from "@polkadot/util-crypto";
+import {CONTRACT_ADDRESS, PROVIDER_ENDPOINT} from "../lib/constants";
 
 export const ContractContext = React.createContext();
 
@@ -27,8 +21,14 @@ export const ContractProvider = ({ children }) => {
     const [inkV5Contract, setInkV5Contract] = useState();
     const [inkV6Contract, setInkV6Contract] = useState();
 
-    setInkV5Contract(new InkV5Contract(SHIBUYA_RPC, SHIBUYA_CONTRACT_ADDRESS));
-    setInkV6Contract(new InkV6Contract(POP_RPC, POP_CONTRACT_ADDRESS));
+    useEffect(()=>{
+        const load = async () => {
+            await cryptoWaitReady().catch(console.error);
+            setInkV5Contract(new InkV5Contract(PROVIDER_ENDPOINT.shibuya, CONTRACT_ADDRESS.shibuya));
+            setInkV6Contract(new InkV6Contract(PROVIDER_ENDPOINT.pop, CONTRACT_ADDRESS.pop));
+        }
+        load().catch(console.error);
+    },[])
 
 
     const getTradingPair = async(tradingPairId : number) :Promise<TradingPair> => {
@@ -37,8 +37,15 @@ export const ContractProvider = ({ children }) => {
             return inkV5Contract.getTradingPair(tradingPairId);
         } else if (inkVersion === "ink_v6") {
             return inkV6Contract.getTradingPair(tradingPairId);
-        } else {
-            console.error("Unknow ink! version : ", inkVersion);
+        }
+        console.error("Unknow ink! version : ", inkVersion);
+        return {
+            tradingPairId,
+            token0: 'NA',
+            token1: 'NA',
+            lastUpdate: BigInt(0),
+            nbUpdates: 0,
+            value: BigInt(0)
         }
     }
 

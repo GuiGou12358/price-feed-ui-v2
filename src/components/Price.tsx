@@ -31,10 +31,12 @@ export function Price(props) {
     try {
       const tradingPair : TradingPair = await getTradingPair(props.pairId);
       if (itemLastUpdate !== tradingPair.lastUpdate){
-        props.loading.setLoadingPrices(true)
+        props.loading.setLoadingPrices(true);
         setPrice(formatTokenBalance(tradingPair.value, "USD", 18));
-        setItemLastUpdate(tradingPair.lastUpdate)
-        setLastUpdate(tradingPair.lastUpdate);
+        setItemLastUpdate(tradingPair.lastUpdate);
+        if (tradingPair.lastUpdate > 0) {
+          setLastUpdate(tradingPair.lastUpdate);
+        }
         props.loading.setLoadingPrices(false);
       } else {
         console.log("No update");

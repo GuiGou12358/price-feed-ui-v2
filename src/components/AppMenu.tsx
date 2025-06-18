@@ -17,10 +17,10 @@ export function AppMenu() {
     setAnchorEl(null);
   };
     const switchV5 = (event) => {
-        setInkVersion('v5');
+        setInkVersion('ink_v5');
     };
     const switchV6 = (event) => {
-        setInkVersion('v6');
+        setInkVersion('ink_v6');
     };
 
   return (
