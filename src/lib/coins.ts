@@ -20,8 +20,7 @@ export const coins = {
     astar: {
         ticker: "ASTR",
         pairId: 283,
-        //image: "https://assets.coingecko.com/coins/images/22617/large/astr.png?1642314057"
-        image: astar_logo
+        image: "https://assets.coingecko.com/coins/images/22617/large/astr.png?1642314057"
     },
     phala: {
         ticker: "PHA",
@@ -41,8 +40,7 @@ export const coins = {
     shiden: {
         ticker: "SDN",
         pairId: 2294,
-        //image: "https://assets.coingecko.com/coins/images/18027/large/tFOtjrr3_400x400.png?1630291767"
-        image: shiden_logo
+        image: "https://assets.coingecko.com/coins/images/18027/large/tFOtjrr3_400x400.png?1630291767"
     },
     kusama: {
         ticker: "KSM",

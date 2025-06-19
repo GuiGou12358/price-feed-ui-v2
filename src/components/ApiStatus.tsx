@@ -1,9 +1,12 @@
-import { useContext } from 'react';
-import { Box, Chip, Tooltip } from '@mui/material';
-import {Typography} from '@mui/material';
+import React, {useContext} from 'react';
+import {Box, Chip, Tooltip, Typography} from '@mui/material';
+import {ContractContext} from "../context/ContractProvider";
+import {CONTRACT_ADDRESS, PROVIDER_ENDPOINT} from "../lib/constants";
 
-export function ApiStatus(props) {
-/*
+
+export function ApiStatus() {
+    const {inkVersion} = useContext(ContractContext);
+
     const GreenDot = ()=>{
         return <>
             <svg fill="#00b100" width="30px" height="30px" viewBox="0 0 20.00 20.00" xmlns="http://www.w3.org/2000/svg" stroke="#00b100" strokeWidth="2">
@@ -18,43 +21,26 @@ export function ApiStatus(props) {
             </svg>
         </>
     }
-    const StatusDot = (props)=> {
-        if(props.api?._isReady) {
+    const StatusDot = ()=> {
+        if(true) {
             return <GreenDot/>
         }
         else {
             return <RedDot/>
         }
     }
- */
-/*
-    const apis={astar:astarContext}
-    const api = apis[props.context].api
-    const provider = apis[props.context].provider
 
- */
+    const provider = (inkVersion === "ink_v5") ? PROVIDER_ENDPOINT.shibuya : PROVIDER_ENDPOINT.pop;
+    const address = (inkVersion === "ink_v5") ? CONTRACT_ADDRESS.shibuya : CONTRACT_ADDRESS.pop;
+    const context = (inkVersion === "ink_v5") ? "Astar testnet" : "Pop Network";
 
-    //const context = props.context.charAt(0).toUpperCase() + props.context.slice(1);
-
-    //const address = CONTRACT_ADDRESSES[props.context]
-    //console.log("Api.provider",provider?.endpoint)
     return (<>
-        <Tooltip placement="top" children={undefined} title={undefined} >
+        <Tooltip placement="top" title={<><Typography m={"5px 0"} p={0}>{provider}</Typography>{address}</>}>
             <Box display="flex" alignItems="center" sx={{marginLeft:"auto"}}>
-                <Chip label={"testnet"} />
-            </Box>
-        </Tooltip>
-    </>);
-    /*
-    return (<>
-        <Tooltip placement="top" title={<><Typography m={"5px 0"} p={0}>{provider?.endpoint}</Typography>{address}</>}>
-            <Box display="flex" alignItems="center" sx={{marginLeft:"auto"}}>
-                <Chip icon={<StatusDot api={api} />} label={context+" testnet"} />
-                
+                <Chip icon={<StatusDot/>} label={context} />
             </Box>
         </Tooltip>
     </>);
 
-     */
 
 }

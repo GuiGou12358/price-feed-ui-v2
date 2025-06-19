@@ -7,7 +7,7 @@ import burger_svg from "../images/burger.svg";
 import {ContractContext} from "../context/ContractProvider";
 
 export function AppMenu() {
-    const {setInkVersion} = useContext(ContractContext);
+  const {inkVersion, setInkVersion} = useContext(ContractContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -25,6 +25,7 @@ export function AppMenu() {
 
   return (
     <div>
+        {inkVersion === 'ink_v5' ? 'ink! v5' : 'ink! v6'}
       <Button
           id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}

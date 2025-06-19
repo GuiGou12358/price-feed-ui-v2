@@ -20,8 +20,8 @@ export function ContentHeader() {
       <Grid item xs={12} >
           <Item>
           <h3>An Oracle to inject token pair prices into your Smart Contract</h3>
-              <p>The worker deployed on Pala Cloud periodically sends a request to the CoinGecko API, fetches all the prices for the pairs set, and sends them to the Ink! Smart Contract.</p>
-              <p>The dApp will then query the Smart Contract until the timestamp of the prices is higher than the query timestamp, and refresh the data.</p>
+              <p>The worker deployed on Pala Cloud periodically sends a request to the CoinGecko API, fetches all the prices for the pairs set, and sends them to the ink! smart contract.</p>
+              <p>The dApp periodically queries the smart contracts and refresh the data.</p>
           </Item> 
       </Grid>
     </Grid> 

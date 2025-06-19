@@ -9,7 +9,7 @@ import {ContractContext, TradingPair} from "../context/ContractProvider";
 
 export function Price(props) {
 
-  const {setLastUpdate, getTradingPair } = useContext(ContractContext);
+  const {setLastUpdate, getTradingPair} = useContext(ContractContext);
   const [price, setPrice] = useState();
   const [itemLastUpdate, setItemLastUpdate] = useState();
 

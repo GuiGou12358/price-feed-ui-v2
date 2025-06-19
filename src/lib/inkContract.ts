@@ -23,8 +23,6 @@ export class InkContract {
           },
         },
     );
-    //console.log("getTradingPair - success %s", success);
-    //console.log(value);
     if (!success) {
       return Promise.reject("Error to query get_trading_pair method")
     }
@@ -37,6 +35,7 @@ export class InkContract {
       lastUpdate: value.response?.last_update,
     }
   }
+
 }
 
 export class InkV5Contract extends InkContract {
@@ -45,12 +44,11 @@ export class InkV5Contract extends InkContract {
     rpc: string,
     address: string,
   ) {
-    super()
+    super();
     if (!clients.has(rpc)){
       clients.set(rpc, createClient(withPolkadotSdkCompat(getWsProvider(rpc))));
     }
-    const client = clients.get(rpc);
-    const typedApi = client.getTypedApi(shibuya);
+    const typedApi = clients.get(rpc).getTypedApi(shibuya);
     const sdk = createInkSdk(typedApi, contracts.price_feed_consumer_ink_v5);
     this.contract = sdk.getContract(address);
   }
@@ -63,12 +61,11 @@ export class InkV6Contract extends InkContract {
       rpc: string,
       address: string,
   ) {
-    super()
+    super();
     if (!clients.has(rpc)){
       clients.set(rpc, createClient(withPolkadotSdkCompat(getWsProvider(rpc))));
     }
-    const client = clients.get(rpc);
-    const typedApi = client.getTypedApi(pop);
+    const typedApi = clients.get(rpc).getTypedApi(pop);
     const sdk = createReviveSdk(typedApi, contracts.price_feed_consumer_ink_v6);
     this.contract = sdk.getContract(address);
   }

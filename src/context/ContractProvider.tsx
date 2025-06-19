@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {InkV5Contract, InkV6Contract} from "../lib/inkContract";
+import {InkContract, InkV5Contract, InkV6Contract} from "../lib/inkContract";
 import {cryptoWaitReady} from "@polkadot/util-crypto";
 import {CONTRACT_ADDRESS, PROVIDER_ENDPOINT} from "../lib/constants";
 
@@ -31,14 +31,10 @@ export const ContractProvider = ({ children }) => {
     },[])
 
 
-    const getTradingPair = async(tradingPairId : number) :Promise<TradingPair> => {
-
-        if (inkVersion === "ink_v5") {
-            return inkV5Contract.getTradingPair(tradingPairId);
-        } else if (inkVersion === "ink_v6") {
-            return inkV6Contract.getTradingPair(tradingPairId);
+    const query = async(contract: InkContract, tradingPairId : number) :Promise<TradingPair> => {
+        if (contract){
+            return inkV5Contract?.getTradingPair(tradingPairId);
         }
-        console.error("Unknow ink! version : ", inkVersion);
         return {
             tradingPairId,
             token0: 'NA',
@@ -49,15 +45,24 @@ export const ContractProvider = ({ children }) => {
         }
     }
 
+    const getTradingPair = async(tradingPairId : number) :Promise<TradingPair> => {
+        if (inkVersion === "ink_v5") {
+            return query(inkV5Contract, tradingPairId);
+        } else if (inkVersion === "ink_v6") {
+            return query(inkV6Contract, tradingPairId);
+        } else {
+            console.error("Unknow ink! version : ", inkVersion);
+        }
+    }
 
   return (
     <ContractContext.Provider
       value={{
           inkVersion,
           setInkVersion,
-          getTradingPair,
           lastUpdate,
-          setLastUpdate
+          setLastUpdate,
+          getTradingPair
       }}
     >
       {children}
