@@ -16,11 +16,11 @@ export function ContentHeader() {
   }));
 
   return <>
-  <Grid container spacing={4}>
-      <Grid item xs={12} >
+  <Grid container spacing={4} maxWidth="md">
+      <Grid>
           <Item>
           <h3>An Oracle to inject token pair prices into your Smart Contract</h3>
-              <p>The worker deployed on Pala Cloud periodically sends a request to the CoinGecko API, fetches all the prices for the pairs set, and sends them to the ink! smart contract.</p>
+              <p>The worker deployed on Pala Cloud periodically sends a request to the CoinGecko API, fetches all the prices for the pairs set, and sends them to the ink! smart contracts.</p>
               <p>The dApp periodically queries the smart contracts and refresh the data.</p>
           </Item> 
       </Grid>

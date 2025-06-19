@@ -9,7 +9,7 @@ import {ContractContext} from "../context/ContractProvider";
 import {ApiStatus} from "./ApiStatus";
 
 export function Content() {
-  const {lastUpdate} = useContext(ContractContext);
+  const {getLastUpdate} = useContext(ContractContext);
   const [loadingPrices, setLoadingPrices] = useState(false)
 
   const formatTimestamp = (timestamp : bigint | undefined) :string => {
@@ -26,7 +26,7 @@ export function Content() {
   <Container sx={{pt:4}} maxWidth="md">
     <Box sx={{backgroundColor:"#202020", borderRadius:3, p:3}}>
       <Box display={'flex'} alignItems="center">
-        Updated: {formatTimestamp(lastUpdate)}
+        Updated: {formatTimestamp(getLastUpdate())}
         <CircularProgress
           sx={{display:loadingPrices ? "inline-block" : "none" ,m:"0 10px"}}
           size={"1em"}

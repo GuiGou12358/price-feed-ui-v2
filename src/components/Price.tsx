@@ -16,11 +16,10 @@ export function Price(props) {
   useEffect(() => {
     // load the page
     doQuery();
-
-    // do it every 60 seconds
+    // do it every 30 seconds
     const doQueryInInterval = setInterval(() => {
       doQuery();
-    }, 60 * 1000);
+    }, 30 * 1000);
 
     return () => {
       clearInterval(doQueryInInterval);
@@ -34,9 +33,7 @@ export function Price(props) {
         props.loading.setLoadingPrices(true);
         setPrice(formatTokenBalance(tradingPair.value, "USD", 18));
         setItemLastUpdate(tradingPair.lastUpdate);
-        if (tradingPair.lastUpdate > 0) {
-          setLastUpdate(tradingPair.lastUpdate);
-        }
+        setLastUpdate(tradingPair.lastUpdate);
         props.loading.setLoadingPrices(false);
       } else {
         console.log("No update");

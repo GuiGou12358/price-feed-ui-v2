@@ -13,13 +13,13 @@ export default function App() {
     <ContractProvider>
       <Container sx={{pt:2}} maxWidth="lg">
         <Grid container spacing={2}>
-          <Grid item xs={9}>
+          <Grid>
             <AppHeader />
           </Grid>
-          <Grid item xs={3} sx={{margin:'auto'}}>
+          <Grid sx={{margin:'auto'}}>
             <Box> <AppMenu /></Box>
           </Grid>
-          <Grid item xs={12}>
+          <Grid>
             <ContentHeader />
             <Content />
           </Grid>

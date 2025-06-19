@@ -16,8 +16,9 @@ export type TradingPair = {
 
 export const ContractProvider = ({ children }) => {
 
-    const [lastUpdate, setLastUpdate] = useState();
     const [inkVersion, setInkVersion] = useState("ink_v6");
+    const [inkV5LastUpdate, setInkV5LastUpdate] = useState();
+    const [inkV6LastUpdate, setInkV6LastUpdate] = useState();
     const [inkV5Contract, setInkV5Contract] = useState();
     const [inkV6Contract, setInkV6Contract] = useState();
 
@@ -33,7 +34,7 @@ export const ContractProvider = ({ children }) => {
 
     const query = async(contract: InkContract, tradingPairId : number) :Promise<TradingPair> => {
         if (contract){
-            return inkV5Contract?.getTradingPair(tradingPairId);
+            return await contract?.getTradingPair(tradingPairId);
         }
         return {
             tradingPairId,
@@ -47,12 +48,31 @@ export const ContractProvider = ({ children }) => {
 
     const getTradingPair = async(tradingPairId : number) :Promise<TradingPair> => {
         if (inkVersion === "ink_v5") {
-            return query(inkV5Contract, tradingPairId);
+            return await query(inkV5Contract, tradingPairId);
         } else if (inkVersion === "ink_v6") {
-            return query(inkV6Contract, tradingPairId);
+            return await query(inkV6Contract, tradingPairId);
         } else {
             console.error("Unknow ink! version : ", inkVersion);
         }
+    }
+
+    const setLastUpdate = (timestamp : bigint) => {
+        if (inkVersion === "ink_v5") {
+            return setInkV5LastUpdate(timestamp);
+        } else if (inkVersion === "ink_v6") {
+            return setInkV6LastUpdate(timestamp);
+        }
+        console.error("Unknow ink! version : ", inkVersion);
+    }
+
+    const getLastUpdate = () : bigint => {
+        if (inkVersion === "ink_v5") {
+            return inkV5LastUpdate;
+        } else if (inkVersion === "ink_v6") {
+            return inkV6LastUpdate;
+        }
+        console.error("Unknow ink! version : ", inkVersion);
+        return undefined;
     }
 
   return (
@@ -60,7 +80,7 @@ export const ContractProvider = ({ children }) => {
       value={{
           inkVersion,
           setInkVersion,
-          lastUpdate,
+          getLastUpdate,
           setLastUpdate,
           getTradingPair
       }}
