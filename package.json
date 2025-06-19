@@ -13,7 +13,7 @@
     "gen-pop-rpc": "yarn papi add -w wss://rpc1.paseo.popnetwork.xyz pop",
     "gen-ink-v5-contract-metadata": "yarn papi ink add metadata/price_feed_consumer_ink_v5.json",
     "gen-ink-v6-contract-metadata": "yarn papi ink add metadata/price_feed_consumer_ink_v6.json",
-    "generate": "yarn gen-pop-rpc && yarn gen-ink-v6-contract-metadata"
+    "generate": "yarn gen-shibuya-rpc && yarn gen-pop-rpc && yarn gen-ink-v5-contract-metadata && yarn gen-ink-v6-contract-metadata"
   },
   "peerDependencies": {
     "polkadot-api": "*"
