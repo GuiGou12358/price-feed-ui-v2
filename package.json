@@ -23,7 +23,6 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "latest",
-    "@polkadot-api/descriptors": "file:.papi/descriptors",
     "@polkadot-api/sdk-ink": "^0.1.0",
     "@polkadot-api/substrate-bindings": "^0.14.0",
     "@polkadot/api": "^16.2.1",
