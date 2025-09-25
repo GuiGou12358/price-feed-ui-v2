@@ -9,11 +9,11 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "gen-shibuya-rpc": "yarn papi add -w wss://rpc.shibuya.astar.network shibuya",
-    "gen-pah-rpc": "yarn papi add -w wss://testnet-passet-hub.polkadot.io pah",
+    "gen-shibuya-metadata": "yarn papi add -w wss://rpc.shibuya.astar.network shibuya",
+    "gen-pah-metadata": "yarn papi add -w wss://testnet-passet-hub.polkadot.io pah",
     "gen-ink-v5-contract-metadata": "yarn papi ink add metadata/price_feed_consumer_ink_v5.json",
     "gen-ink-v6-contract-metadata": "yarn papi ink add metadata/price_feed_consumer_ink_v6.json",
-    "generate": "yarn gen-ink-v5-contract-metadata && yarn gen-ink-v6-contract-metadata && yarn gen-shibuya-rpc && yarn gen-pah-rpc",
+    "generate": "yarn gen-ink-v5-contract-metadata && yarn gen-ink-v6-contract-metadata && yarn gen-shibuya-metadata && yarn gen-pah-metadata",
     "postinstall": "yarn generate"
   },
   "peerDependencies": {
