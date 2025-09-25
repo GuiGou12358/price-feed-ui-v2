@@ -26,7 +26,7 @@ export const ContractProvider = ({ children }) => {
         const load = async () => {
             await cryptoWaitReady().catch(console.error);
             setInkV5Contract(new InkV5Contract(PROVIDER_ENDPOINT.shibuya, CONTRACT_ADDRESS.shibuya));
-            setInkV6Contract(new InkV6Contract(PROVIDER_ENDPOINT.pop, CONTRACT_ADDRESS.pop));
+            setInkV6Contract(new InkV6Contract(PROVIDER_ENDPOINT.pah, CONTRACT_ADDRESS.pah));
         }
         load().catch(console.error);
     },[])

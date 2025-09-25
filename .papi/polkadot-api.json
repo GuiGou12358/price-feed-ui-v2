@@ -6,17 +6,18 @@
       "wsUrl": "wss://rpc.shibuya.astar.network",
       "metadata": ".papi/metadata/shibuya.scale",
       "genesis": "0xddb89973361a170839f80f152d2e9e38a376a5a7eccefcade763f46a8e567019",
-      "codeHash": "0x9d5d18141445e683bdb9469a5cf88782e4b3cf5436415f14689153605d0faa91"
+      "codeHash": "0x67535c3023fe176fb2a1dcbf8584201b35b7027f43e9c8d3a4ea57155bc2ad50"
     },
-    "pop": {
-      "wsUrl": "wss://rpc1.paseo.popnetwork.xyz",
-      "metadata": ".papi/metadata/pop.scale",
-      "genesis": "0xe8b2d197b82a0da1fffca832c050894ebe343b289c61ef439aa694bdcef78aa1",
-      "codeHash": "0x7fb1a967a98f40aa39622e3e3fa39f9325c10940cd6767ef3f1250463cb76264"
+    "pah": {
+      "wsUrl": "wss://testnet-passet-hub.polkadot.io",
+      "metadata": ".papi/metadata/pah.scale",
+      "genesis": "0xfd974cf9eaf028f5e44b9fdd1949ab039c6cf9cc54449b0b60d71b042e79aeb6",
+      "codeHash": "0x3e088e61b3cb51e74c67cb3634a699109bf3ded14fbd35ed731968d0aa82a441"
     }
   },
   "ink": {
     "price_feed_consumer_ink_v5": ".papi/contracts/price_feed_consumer_ink_v5.json",
-    "price_feed_consumer_ink_v6": ".papi/contracts/price_feed_consumer_ink_v6.json"
+    "price_feed_consumer_ink_v6": ".papi/contracts/price_feed_consumer_ink_v6.json",
+    "price_feed_consumer": ".papi/contracts/price_feed_consumer.json"
   }
 }

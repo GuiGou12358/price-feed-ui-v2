@@ -1,4 +1,4 @@
-import {contracts, pop, shibuya} from "@polkadot-api/descriptors"
+import {contracts, pah, shibuya} from "@polkadot-api/descriptors"
 import {createClient, PolkadotClient} from "polkadot-api"
 import {withPolkadotSdkCompat} from "polkadot-api/polkadot-sdk-compat"
 import {getWsProvider} from "polkadot-api/ws-provider/web"
@@ -65,7 +65,7 @@ export class InkV6Contract extends InkContract {
     if (!clients.has(rpc)){
       clients.set(rpc, createClient(withPolkadotSdkCompat(getWsProvider(rpc))));
     }
-    const typedApi = clients.get(rpc).getTypedApi(pop);
+    const typedApi = clients.get(rpc).getTypedApi(pah);
     const sdk = createReviveSdk(typedApi, contracts.price_feed_consumer_ink_v6);
     this.contract = sdk.getContract(address);
   }
