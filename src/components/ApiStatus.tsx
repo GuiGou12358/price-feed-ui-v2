@@ -30,9 +30,9 @@ export function ApiStatus() {
         }
     }
 
-    const provider = (inkVersion === "ink_v5") ? PROVIDER_ENDPOINT.shibuya : PROVIDER_ENDPOINT.pop;
-    const address = (inkVersion === "ink_v5") ? CONTRACT_ADDRESS.shibuya : CONTRACT_ADDRESS.pop;
-    const context = (inkVersion === "ink_v5") ? "Astar testnet" : "Pop Network";
+    const provider = (inkVersion === "ink_v5") ? PROVIDER_ENDPOINT.shibuya : PROVIDER_ENDPOINT.pah;
+    const address = (inkVersion === "ink_v5") ? CONTRACT_ADDRESS.shibuya : CONTRACT_ADDRESS.pah;
+    const context = (inkVersion === "ink_v5") ? "Astar testnet" : "PAH Network";
 
     return (<>
         <Tooltip placement="top" title={<><Typography m={"5px 0"} p={0}>{provider}</Typography>{address}</>}>
